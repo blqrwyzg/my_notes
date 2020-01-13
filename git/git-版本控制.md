@@ -1,6 +1,9 @@
 # 起步
 
 [官网]: https://git-scm.com/book/zh/v2
+[讲解]: https://juejin.im/post/5dba383cf265da4d144e7cf5
+
+
 
 ## 版本控制：
 

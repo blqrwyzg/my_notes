@@ -17,8 +17,7 @@
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
   - defaults 默认源 推荐
-  -https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/linux-64/
- 
+  -https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 ```
 
 

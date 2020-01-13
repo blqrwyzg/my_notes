@@ -18,11 +18,7 @@
 
 --如果在一个已经存在文件的文件夹中初始化git仓库来进行版本控制的话，应该跟踪并提交这些文件。
 
-**跟踪文件**：
-
-git  add  *.c
-
-git add LICENSE
+**跟踪文件**：git  add  .
 
 **提交文件**： git commit -m'initial project version'
 
@@ -41,3 +37,4 @@ git add LICENSE
 
 
 **PS**：git支持多种数据传输协议 https，git，ssh协议等
+
