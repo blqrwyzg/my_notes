@@ -124,6 +124,8 @@ $ git commit --amend
 
 --查看分支	`git branch`
 
+--切换分支	`git checkout <分支名>`
+
 
 
 
