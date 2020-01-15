@@ -80,13 +80,11 @@ $ git commit --amend
 
 ### 远程仓库
 
+--添加远程git仓库 `git remote add 简写+url`
+
 --查看配置的远程服务器 `git remote`
 
 ​		-- `git remote -v 	命名与url`
-
---添加远程git仓库 `git remote add 命名+url`
-
-
 
 ##### 配置github
 
@@ -94,7 +92,9 @@ $ git commit --amend
 
 --在github上建立仓库
 
---在本地添加远程仓库：git remote add origin git@github.com:blqrwyzg/demo.git
+--在本地添加远程仓库：`git remote add <shortname> <url>`		
 
---推送远程仓库：git push -u origin master
+--推送远程仓库：`git push -u 命名 分支`
+
+--拉去仓库中内容：git fetch <shorename>
 
