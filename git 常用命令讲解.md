@@ -1,5 +1,9 @@
 ## git**常用命令**
 
+[官网]: https://git-scm.com/book/zh/v2
+[廖雪峰]: https://www.liaoxuefeng.com/wiki/896043488029600
+[讲解]: https://juejin.im/post/5dba383cf265da4d144e7cf5
+
 
 
 ### **--配置用户信息**
@@ -46,7 +50,7 @@ git config --global user.email + 邮箱
 
 --未暂存文件提交版本库 	`git commit -a -m  '注解'`
 
---取消暂存 `git reset HEAD +文件名`
+
 
 --移除文件 1、删除文件 2、 `git rm +文件名字` ，下次commit后，文件就不纳入版本控制管理中了。
 
@@ -78,23 +82,77 @@ $ git commit --amend
 
 
 
+##### 版本回退：
+
+​	--`git reset --hard HEAD^ （上个版本）`
+
+​	--`git reste --hard <版本号>`
+
+​	--`git reflog` 命令历史
+
+
+
+##### 撤销修改：
+
+--撤销文件在工作区的修改	`git checkout -- <文件名>` 	
+
+​		--回到版本库状态  
+
+​		--回到暂存区状态
+
+--撤销暂存区 `git reset HEAD +文件名`
+
+
+
+##### 删除文件
+
+​	--在工作区删除文件后
+
+​		--	`git rm <文件>`
+
+​		--	`git commit -m ''`
+
+--删错了恢复到最新版本
+
+​	--用版本库里的版本替换工作区的版本	`git checkout -- <文件>`
+
+
+
+### git分支
+
+--切换并创建分支	`git checkout -b <名称>`
+
+--查看分支	`git branch`
+
+
+
+
+
+
+
+
+
 ### 远程仓库
 
---添加远程git仓库 `git remote add 简写+url`
+--添加远程git仓库	 `git remote add 简写+url`
 
---查看配置的远程服务器 `git remote`
+--查看配置的远程服务器 	`git remote`
 
-​		-- `git remote -v 	命名与url`
+​		-- 	`git remote -v 	命名与url`
 
 ##### 配置github
 
---将公钥添加到github
+--将公钥添加到github，如果公钥不在github 则只能获取 不能推送
 
 --在github上建立仓库
 
---在本地添加远程仓库：`git remote add <shortname> <url>`		
+--在本地添加远程仓库：	`git remote add <shortname> <url>`		
 
---推送远程仓库：`git push -u 命名 分支`
+--推送远程仓库：	`git push -u 命名 分支` （**第一次推送**将本地master 与远程master关联）
 
---拉去仓库中内容：git fetch <shorename>
+​		--	`git push <命名><分支>`（关联后就可以简化命令）
+
+--克隆本地库		`git clone <url>`	
+
+--拉去仓库中内容		`git fetch <名>`
 
