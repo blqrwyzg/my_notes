@@ -267,9 +267,74 @@ make install
 
 ##### 四、uwsgi 启动django
 
+
+
 ###### django测试: 
 
 --启动django `python3 manage.py rumserver`	  **报错**：缺少第三方包 ，切记一定要先上和线下一定要同步环境。
+
+
+
+###### 配置uwsgi
+
+--用uwsgi启动Django 向 外暴露服务，通过ip访问。
+
+--创建文件 .ini	**配置uwsgi**	`uwsgi --ini uwsgi.ini` 加载文件	 **报错**：查看uwsgi日志
+
+​					--**端口无法绑定**   换个端口 0.0.0.0
+
+​					--django setting设置 ALLOWED_HOSTS = ['*'] ，Django设置允许的ip访问
+
+​					--**找不到django应用**：	设置正确的wsgi路径 
+
+```
+[uwsgi]
+chdir = /home/mysite
+home = /root/miniconda3/envs/django
+module =mysite.wsgi
+processes = 4
+threads = 2
+stats = 0.0.0.0:8080
+master = true
+http = 0.0.0.0:80
+chmod-socket = 666
+log-maxsize = 5000000
+daemonize = /home/mysite/uwsgi.log
+vacuum = true
+Lazy-apps = true
+pidfile = uwsgi.pid
+disable-logging = true
+max-requests = 5000
+harakiri = 60
+```
+
+ok ，现在通过公网ip 可访问项目，不过缺失静态文件
+
+​	
+
+
+
+##### **五、配置nginx**
+
+​	-- 发现虚拟环境没有安装
+
+​			--conda install nginx 失败  	**ps**： 需要多试几次，因为网络环境
+
+​			--同时安装配置环境
+
+```
+conda install gcc
+```
+
+
+
+​	--**启动nginx**  
+
+​		--发现端口被uwsgi占用，关闭uwsgi
+
+​		--发现无法启动nginx，删除nginx 从官网下载
+
+
 
 
 
