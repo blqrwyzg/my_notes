@@ -184,11 +184,63 @@ $ git commit --amend
 
 ### 远程仓库
 
---添加远程git仓库	 `git remote add 简写+url`
+##### 添加远程git仓库	
 
---查看配置的远程服务器 	`git remote`
+​	-- `git remote add 简写+url` 	仅添加远程主机
 
-​		-- 	`git remote -v 	命名与url`
+​	--克隆本地库		`git clone <url>`	拷贝的是整个项目
+
+
+
+##### 推送分支到远程
+
+​	--	`git push <url><分支>`（如果远程仓库比本地新 就会被拒绝，必须将新的库拉去下来合并然后再推送）
+
+
+
+##### 拉去仓库内容
+
+--取回远程仓库分支更新，并与本地制定的分支合
+
+​	-- `git pull <远程主机><远程分支>：<本地分支>` 不加本地分支则默认与当前分支合并	
+
+
+
+--拉去仓库中内容	`git fetch <url><分支>` 	需要手动合并
+
+​	-- git fetch <远程主机>	 拉去全部分支
+
+​	**合并**：
+
+​			1.在远程分支上建立新的分支
+
+
+
+##### 查看拉去的远程分支
+
+​	--git branch -r
+
+​	-- git branch -a  所有分支
+
+
+
+##### 查看远程仓库
+
+​	--`git remote`	所有服务器
+
+​	--`git remote show <URL>`	查看更多远程信息
+
+​	-- `git remote -v 	命名与url`
+
+
+
+##### 跟踪分支：
+
+​	--将分支与远程分支创建练习
+
+​	--	git pull 会直接推送到远程
+
+
 
 --当本地仓库与远程冲突时，先把最新的提交抓下来，然后在本地合并，解决冲突，再推送
 
@@ -202,21 +254,11 @@ $ git commit --amend
 
 ​		--pull
 
-##### 配置github
 
---将公钥添加到github，如果公钥不在github 则只能获取 不能推送
 
---在github上建立仓库
+**删除远程分支**
 
---在本地添加远程仓库：	`git remote add <shortname> <url>`		
-
---推送远程仓库：	`git push -u 命名 分支` （**第一次推送**将本地master 与远程master关联）
-
-​		--	`git push <命名><分支>`（关联后就可以简化命令）
-
---克隆本地库		`git clone <url>`	
-
---拉去仓库中内容		`git fetch <名>`
+​	--	`git push <名称> --delete <分支>`
 
 
 
