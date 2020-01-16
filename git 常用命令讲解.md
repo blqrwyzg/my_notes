@@ -188,6 +188,8 @@ $ git commit --amend
 
 ​	-- `git remote add 简写+url` 	仅添加远程主机
 
+​		--`git remote remove <简称>`		删除远程主机
+
 ​	--克隆本地库		`git clone <url>`	拷贝的是整个项目
 
 
