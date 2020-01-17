@@ -316,37 +316,120 @@ ok ，现在通过公网ip 可访问项目，不过缺失静态文件
 
 ##### **五、配置nginx**
 
-​	-- 发现虚拟环境没有安装
+​	-- 发现虚拟环境没有安装nginx
 
-​			--conda install nginx 失败  	**ps**： 需要多试几次，因为网络环境
+​			--conda install nginx 失败  	**ps**： conda 安装的无法使用 
 
-​			--同时安装配置环境
+​			--**去nginx官网下载稳定版 手动**	默认安装 路径 /usr/local/nginx
 
-```
-conda install gcc
-```
+​			--**安装后，添加环境变量**
 
-
+​			
 
 ​	--**启动nginx**  
 
+​		--nginx	
+
 ​		--发现端口被uwsgi占用，关闭uwsgi
 
-​		--发现无法启动nginx，删除nginx 从官网下载
+​		--重新启动 nginx
 
-​	
+​		--浏览器访问ip，测试nginx是否成功
+
+
 
 ​	--**配置nginx.conf**
 
 ​		--目录	/usr/local/nginx/conf/
 
-​		
+```
+  server {
+        listen       80; #监听的端口
+        server_name  123.56.12.55;	#ip地址 或者域名 
+        charset utf-8; #编码格式
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            include uwsgi_params;	#导入uwsgi——parmas 用uwsgi_params 与uwsgi通讯
+
+            uwsgi_param UWSGI_SCRIPT mysit.wsgi; # djangowsgi文件
+            uwsgi_param UWSGI_CHDIR /home/mysite; #django目录
+            uwsgi_pass unix:///home/mysite/uwsgi.sock;	#通过sock通讯
+            root   html;
+            index  index.html index.htm;
+        }
 
 ```
 
+
+
+##### uwsgi与nginx通讯配置：
+
+```
+[uwsgi]
+chdir = /home/mysite
+home = /root/miniconda3/envs/django
+module =mysite.wsgi
+processes = 4
+threads = 2
+master = true
+socket = uwsgi.sock
+chmod-socket = 666
+log-maxsize = 5000000
+daemonize = /home/mysite/uwsgi.log
+vacuum = true
+Lazy-apps = true
+pidfile = uwsgi.pid
+disable-logging = true
+max-requests = 5000
 ```
 
 
 
+##### 六：启动 nginx 与uesgi 开启web服务
+
+​	--开启uwsgi失败，原因是没启动虚拟环境
+
+​	--第二次失败，gcc库报错
+
+​		--在虚拟环境中找到报错包
+
+​		--删除gcc6软连接
+
+​		--重建gcc软连接
+
+​	再次启动 成功	但无静态文件
 
 
+
+
+
+##### 七、配置静态文件
+
+###### 	配置django
+
+​		--django setting设置
+
+```
+STATIC_ROOT  = os.path.join(BASE_DIR, 'static')#指定样式收集目录
+```
+
+​		--收集静态文件
+
+```
+python manage.py collectstatic
+```
+
+
+
+###### 配置nginx
+
+```
+location /static/ {
+        alias /data/wwwroot/mysite/static/; #静态资源路径
+```
+
+
+
+# fuck the word
